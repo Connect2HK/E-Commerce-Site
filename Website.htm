@@ -1,3 +1,4 @@
+<!--- HTML File Source Code --->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,14 +187,10 @@
       <li>
         <a href="#">Our Products</a>
         <ul class="sub-menu">
-          <li><a href="#">Product 1</a></li>
-          <li><a href="#">Product 2</a></li>
-          <li><a href="#">Product 3</a></li>
-          <li><a href="#">Product 4</a></li>
-          <li><a href="#">Apparel</a></li>
-          <li><a href="#">New Accessories</a></li>
-          <li><a href="#">Best Sellers</a></li>
-          <li><a href="#">50% Off</a></li>
+          <li><a href="#">Product1</a></li>
+          <li><a href="#">Product2</a></li>
+          <li><a href="#">Product3</a></li>
+          <li><a href="#">Product4</a></li>
         </ul>
       </li>
       <li><a href="#">Contact Us</a></li>
@@ -230,16 +227,27 @@
     </section>
   </main>
   <script>
-    const productsData = {
-      apparel: [],
-      accessories: [],
-      "best-sellers": [],
-      discount: []
+     const productsData = {
+      apparel: ["Apparel Product 1", "Apparel Product 2", "Apparel Product 3", "Apparel Product 4"],
+      accessories: ["Accessories Product 1", "Accessories Product 2", "Accessories Product 3", "Accessories Product 4"],
+      "best-sellers": ["Best Sellers Product 1", "Best Sellers Product 2", "Best Sellers Product 3", "Best Sellers Product 4"],
+      discount: ["50% Off Product 1", "50% Off Product 2", "50% Off Product 3", "50% Off Product 4"]
     };
 
     const productsGroupList = document.querySelector('.products-group-list');
     const productsList = document.getElementById('products-list');
 
+    productsGroupList.addEventListener('click', async (event) => {
+      if (event.target.tagName === 'A') {
+        const group = event.target.getAttribute('data-group');
+        renderProducts(productsData[group]);
+      }
+    });
+
+    function renderProducts(products) {
+      productsList.innerHTML = products.map(product => `<li>${product}</li>`).join('');
+    }
+   
     productsGroupList.addEventListener('click', (event) => {
       if (event.target.tagName === 'A') {
         const group = event.target.getAttribute('data-group');
